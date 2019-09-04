@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> DOM </title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<style type="text/css">
+
+			* {
+				box-sizing: border-box;
+			}
+
+			.menu,
+			.secondmenu {
+				width: 100px;
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+
+			.menu li {
+				vertical-align: top;
+				width: 100%;
+				position: relative;
+				
+			}
+
+			.menu a {
+				background-color: white;
+				display: block;
+				padding: 5px;
+				border: 1px solid grey;
+				border-bottom: 0;
+				text-align: center;
+				text-decoration: none;
+				color: black;
+			}
+
+			.menu a:hover {
+				background-color: black;
+				color: white;
+			}
+
+			.secondmenu {
+				display: none;
+				position: absolute;
+				left: 100%;
+				top: 0;
+			}
+
+			 li:hover ul {
+				display:block;
+			}
+
+			 li:last-child {
+				border-bottom: 1px solid grey;
+			}
+			
+		</style>
+
+		<script>
+
+			function createItem (num,id) {
+				for (let i = 1; i <= num; i++) {
+					let $newLi = document.createElement('li');
+					document.getElementById(id).appendChild($newLi);
+		 			
+			 		let $newA = document.createElement('a');
+					$newA.innerText = ('Item  ' + i);
+					document.getElementById(id).lastElementChild.appendChild($newA);
+		 		}
+			}
+
+			let newUl = document.createElement('ul')
+			document.body.append(newUl);
+			newUl.classList = 'menu';  // привязываем класс лист к нашей константе в которой есть ul.
+			newUl.id = 'mainmenu';
+				
+			createItem(5, 'mainmenu');
+
+			let $newUl4 = document.createElement('ul');
+			document.body.lastElementChild.lastElementChild.appendChild($newUl4)
+			$newUl4.classList = 'secondmenu'; 
+			$newUl4.id = 'submenu';
+			document.getElementById('submenu');
+
+			createItem(3, 'submenu');
+
+		</script>
+
+	</body>
+</html>
