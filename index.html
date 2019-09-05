@@ -69,16 +69,17 @@
 				['Item 4.1 ', 'Item 4.2 ', 'Item 4.3'],
 				'Item 5',
 				'Item 6',
-				['Item 6.1 ', 'Item 6.2 ', 'Item 6.3'],
+['Item 6.1 ', 'Item 6.2 ', ['Item 6.2.1', 'Item 6.2.2', ['Item 6.2.2.1', 'Item 6.2.2.2', 'Item 6.2.2.3']]]
 				]
 
 				console.log(arrMenu);
 
 				let menuItem = function menu(arr) {
 					let counter = 0;
+					let iditem;
 
 				
-					function createMenu (arr) {
+					function createMenu (arr, id) {
 						counter++;
 						for (let i = 0; i < arr.length; i++) {
 							
@@ -92,17 +93,18 @@
 
 							else if (i === 0 && counter > 1) {
 								let $newUl4 = document.createElement('ul');
-								document.body.lastElementChild.lastElementChild.appendChild($newUl4)
+								document.getElementById(id).lastElementChild.appendChild($newUl4)
 								$newUl4.classList = 'secondmenu'; 
 								$newUl4.id = 'submenu' + counter;
 								id = 'submenu'+ counter;
 							}
 							
-							if (Array.isArray(arr[i])) createMenu(arr[i]);
+							if (Array.isArray(arr[i])) createMenu(arr[i], iditem);
 							else {								
 								let $newLi = document.createElement('li');
 								document.getElementById(id).appendChild($newLi);
 								$newLi.id = id + [i];
+								iditem = id + [i];
 			 			 			
 			 			 		let $newA = document.createElement('a');
 								$newA.innerText = (arr[i]);
