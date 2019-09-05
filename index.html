@@ -81,8 +81,7 @@
 					function createMenu (arr) {
 						counter++;
 						for (let i = 0; i < arr.length; i++) {
-							if (Array.isArray(arr[i])) createMenu(arr[i]);
-
+							
 							if (i === 0 && counter === 1) {
 								let newUl = document.createElement('ul')
 								document.body.append(newUl);
@@ -98,8 +97,9 @@
 								$newUl4.id = 'submenu' + counter;
 								id = 'submenu'+ counter;
 							}
-
-							if (!Array.isArray(arr[i])) {
+							
+							if (Array.isArray(arr[i])) createMenu(arr[i]);
+							else {								
 								let $newLi = document.createElement('li');
 								document.getElementById(id).appendChild($newLi);
 								$newLi.id = id + [i];
@@ -109,8 +109,6 @@
 								document.getElementById(id).lastElementChild.appendChild($newA);
 							}
 							
-
-							;
 						}
 					}
 					createMenu(arr);
