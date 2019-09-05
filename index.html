@@ -61,7 +61,71 @@
 
 		<script>
 
-			function createItem (num,id) {
+			let arrMenu = [
+				'Item 1',
+				'Item 2',
+				'Item 3',
+				'Item 4',
+				['Item 4.1 ', 'Item 4.2 ', 'Item 4.3'],
+				'Item 5',
+				'Item 6',
+				['Item 6.1 ', 'Item 6.2 ', 'Item 6.3'],
+				]
+
+				console.log(arrMenu);
+
+				let menuItem = function menu(arr) {
+					let counter = 0;
+
+				
+					function createMenu (arr) {
+						counter++;
+						for (let i = 0; i < arr.length; i++) {
+							if (Array.isArray(arr[i])) createMenu(arr[i]);
+
+							if (i === 0 && counter === 1) {
+								let newUl = document.createElement('ul')
+								document.body.append(newUl);
+								newUl.classList = 'menu';  
+								newUl.id = 'mainmenu';
+								var id = 'mainmenu';
+							}
+
+							else if (i === 0 && counter > 1) {
+								let $newUl4 = document.createElement('ul');
+								document.body.lastElementChild.lastElementChild.appendChild($newUl4)
+								$newUl4.classList = 'secondmenu'; 
+								$newUl4.id = 'submenu' + counter;
+								id = 'submenu'+ counter;
+							}
+
+							if (!Array.isArray(arr[i])) {
+								let $newLi = document.createElement('li');
+								document.getElementById(id).appendChild($newLi);
+								$newLi.id = id + [i];
+			 			 			
+			 			 		let $newA = document.createElement('a');
+								$newA.innerText = (arr[i]);
+								document.getElementById(id).lastElementChild.appendChild($newA);
+							}
+							
+
+							;
+						}
+					}
+					createMenu(arr);
+				}
+			
+				menuItem(arrMenu);
+
+
+
+
+
+
+
+
+		/*	function createItem (num,id) {
 				for (let i = 1; i <= num; i++) {
 					let $newLi = document.createElement('li');
 					document.getElementById(id).appendChild($newLi);
@@ -86,7 +150,7 @@
 			document.getElementById('submenu');
 
 			createItem(3, 'submenu');
-
+*/
 		</script>
 
 	</body>
